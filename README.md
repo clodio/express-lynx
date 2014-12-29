@@ -19,14 +19,14 @@ Configuration:
 ```javascript
 
 // Import lynx and lynx-express
-var Lynx = require('lynx');
-var LynxExpress = require('lynx-express');
+var lynx = require('lynx');
+var lynxExpress = require('lynx-express');
 
 // Setup your Lynx StatsD client as normal, optionally passing a prefix (like 'express')
-var metrics = new Lynx('localhost', 8125, {prefix: 'express'});
+var metrics = new lynx('localhost', 8125, {prefix: 'express'});
 
 // Create the Express middleware passing in the Lynx StatsD Client you created
-var statsdMiddleware = LynxExpress(metrics);
+var statsdMiddleware = lynxExpress(metrics);
 
 // Tell Express to use your statsD middleware
 server.use(statsdMiddleware());

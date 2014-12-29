@@ -6,8 +6,8 @@
  *    `/api/:username/:thingie`). This can be changed run-time by setting
  *    `res.locals.statsdUrlKey`.
  *
- *  Adapted by work from Morten Siebuhr
- *  See: https://github.com/msiebuhr/node-statsd-client
+ *  Adapted by work from Ross Kukulinski
+ *  See: https://github.com/rosskukulinski/lynx-express
  * 
  * Original License:
  * 
@@ -40,8 +40,6 @@ function factory(client) { // Client is a Lynx StatsD client
       res.end = function () {
         end.apply(res, arguments);
 
-        client.increment('response_code.' + res.statusCode);
-
         // Time by URL?
         if (timeByUrl) {
           var routeName = "unknown_express_route";
@@ -58,21 +56,29 @@ function factory(client) { // Client is a Lynx StatsD client
             if (routeName === "/") {
               routeName = "root";
             }
-            routeName = req.method + '_' + routeName;
+            routeName = req.method + '.' + routeName;
           }
           else if (req.url) { // Required to pickup static routes
-            routeName = req.method + '_' + req.url;
+            routeName = req.method + '.' + req.url;
           }
 
+          // personnal hack : get version of the web service
+          if (req.params && req.params.version) {
+                routeName = routeName.replace(/:version/g, req.params.version)
+          }
           // Get rid of : in route names, remove first and last /,
           // and replace rest with _.
-          routeName = routeName.replace(/:/g, "").replace(/^\/|\/$/g, "").replace(/\//g, "_");
+          
+          routeName = routeName.replace(/:/g, "_").replace(/^\/|\/$/g, "_").replace(/\//g, ".");
           endTime = new Date();
-          client.timing('response_time.' + routeName, endTime - startTime);
-          client.increment("requests."+routeName);
+          var duration = endTime - startTime;
+          client.timing('response_time_code.' + routeName + '.' + res.statusCode + '.time', duration);
+         
         } else {
-          endTime = new Date();
-          client.timing('response_time', endTime - startTime);
+            endTime = new Date();
+            client.timing('response_time', endTime - startTime);
+            client.increment('response_code.' + res.statusCode);
+
         }
       };
       next();
