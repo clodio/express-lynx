@@ -1,6 +1,12 @@
 The MIT License (MIT)
 
+Adapted by work from Claude Seguret <claude.seguret@gmail.com>
+See: https://github.com/clodio/express-lynx
+ 
+Original License:
+ 
 Copyright (c) 2013 Ross Kukulinski
+See: https://github.com/rosskukulinski/lynx-express
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

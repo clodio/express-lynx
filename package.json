@@ -1,6 +1,6 @@
 {
-  "name": "lynx-express",
-  "version": "0.2.0",
+  "name": "express-lynx",
+  "version": "1.0.0",
   "description": "Express middleware for sending response status counts and response times to statsd",
   "main": "index.js",
   "scripts": {
@@ -8,18 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/rosskukulinski/lynx-express.git"
+    "url": "git://github.com/clodio/express-lynx.git"
   },
   "keywords": [
     "express",
     "lynx",
     "statsd",
     "nodejs",
-    "middleware"
+    "middleware",
+    "graphite"
   ],
-  "author": "Ross Kukulinski <rossk@labs.asti-usa.com>",
+  "author": "Claude Seguret <claude.seguret@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rosskukulinski/lynx-express/issues"
+    "url": "https://github.com/clodio/express-lynx/issues"
   }
 }
