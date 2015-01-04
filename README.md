@@ -1,20 +1,20 @@
 express-lynx
 ============
 
-Express Middleware for sending data to StatsD.
+Express Middleware for sending data to StatsD and then grapphite.
 
 Please refer to the [Lynx](https://github.com/dscape/lynx) documentation for more in depth details for configuring
 the Lynx StatsD Client.
 
 Once your client is configured, it's pretty straight forward to configure express-lynx.
 
-Installation:
+# Installation:
 
 ```
 npm install express-lynx
 ```
 
-Configuration:
+# Configuration:
 
 ```javascript
 
@@ -38,3 +38,12 @@ per-route timing by adding an option timeByUrl to the middleware constructor.
 ```javascript
 server.use(statsdMiddleware({timeByUrl: true})}
 ```
+
+# Additional Reading
+
+* [Official Statsd Documentation](https://github.com/etsy/statsd/)
+* [Practical Guide to StatsD/Graphite Monitoring](http://matt.aimonetti.net/posts/2013/06/26/practical-guide-to-graphite-monitoring/)
+* [Official Graphite Documentation](http://graphite.readthedocs.org/en/latest/)
+* [Docker image for statsd/graphite](https://github.com/clodio/docker-graphite-statsd)
+* [Configuring Graphite for StatsD](https://github.com/etsy/statsd/blob/master/docs/graphite.md)
+
